@@ -88,7 +88,7 @@
                     <div class="form-group mt-4 mb-2">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-                            <label for="customCheck2" class="custom-control-label">I agree to the <a href="#">terms & conditions.</a></label>
+                            <label for="customCheck2" class="custom-control-label">I agree to <a href="#">be happy.</a></label>
                         </div>
                     </div>
                     <div class="form-group col-12">
@@ -109,11 +109,11 @@
                 <form action="" method="post" role="form" class="p-2" id="forgot-frm">
                     <div class="form-group mb-3">
                         <small class="text-muted">
-                            To reset the password, enter the email to resive password reset instructions.
+                            To reset the password, enter your username.
                         </small>
                     </div>
-                    <div class="form-group mb-3">
-                        <input type="email" name="femail" class="form-control" placeholder="Email" required>
+                    <div class="form-group mt-3">
+                        <input type="text" name="uname" class="form-control" placeholder="Username" required>
                     </div>
                     <div class="form-group col-12">
                         <input type="submit" name="forgot" id="forgot" value="Reset" class="btn btn-primary d-grid col-12 mt-4 mb-2">
