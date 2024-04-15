@@ -67,9 +67,6 @@
             <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="register-box">
                 <h2 class="text-center mt-2">Register</h2>
                 <form action="" method="post" role="form" class="p-2" id="register-frm">
-                    <div class="form-group mb-3">
-                        <input type="text" name="name" class="form-control" placeholder="Full name" required>
-                    </div>
                     <div class="form-group mt-3">
                         <input type="text" name="uname" class="form-control" placeholder="Username" required>
                     </div>
@@ -81,6 +78,12 @@
                     </div>
                     <div class="form-group mt-3">
                         <input type="password" name="cpass" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
                     </div>
                     <div class="form-group mt-4 mb-2">
                         <div class="custom-control custom-checkbox">
