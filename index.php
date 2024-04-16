@@ -37,7 +37,10 @@
         <div class="row">
             <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="login-box">
                 <h2 class="text-center mt-2">Login</h2>
-                <form action="" method="post" role="form" class="p-2" id="login-frm">
+                <form action="login.php" method="post" role="form" class="p-2" id="login-frm">
+                    <?php if (isset($_GET['error'])) { ?>
+                        <p class="error"> <?php echo $_GET['error']; ?></p>
+                    <?php } ?>
                     <div class="form-group mb-3">
                         <input type="text" name="username" class="form-control" placeholder="Username" required>
                     </div>
