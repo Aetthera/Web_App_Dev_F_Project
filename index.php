@@ -20,15 +20,26 @@
             display: none;
         }
     </style>
+    <?php
+    include 'register.php';
+    ?>
+
 </head>
 
 <body class="bg-light">
     <div class="container mt-4">
         <div class="row">
             <div class="col-lg-4 offset-lg-4" id="alert">
-                <div class="alert alert-success">
-                    <strong id="result">hello world</strong>
-                </div>
+                <?php if ($errorMessage) : ?>
+                    <div class="alert alert-danger" id="error-alert">
+                        <strong><?php echo $errorMessage; ?></strong>
+                    </div>
+                <?php endif; ?>
+                <?php if ($successMessage) : ?>
+                    <div class="alert alert-success" id="success-alert">
+                        <strong><?php echo $successMessage; ?></strong>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -129,28 +140,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
             $("#forgot-btn").click(function() {
                 $("#login-box").hide();
                 $("#forgot-box").show();
             });
-        });
 
-        $("#register-btn").click(function() {
-            $("#login-box").hide();
-            $("#register-box").show();
-        });
+            $("#register-btn").click(function() {
+                $("#login-box").hide();
+                $("#register-box").show();
+            });
 
-        $("#login-btn").click(function() {
-            $("#register-box").hide();
-            $("#login-box").show();
-        });
+            $("#login-btn").click(function() {
+                $("#register-box").hide();
+                $("#login-box").show();
+            });
 
-        $("#back-btn").click(function() {
-            $("#forgot-box").hide();
-            $("#login-box").show();
+            $("#back-btn").click(function() {
+                $("#forgot-box").hide();
+                $("#login-box").show();
+            });
         });
     </script>
 </body>
