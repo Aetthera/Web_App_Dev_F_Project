@@ -34,3 +34,11 @@ if (empty($uname)) {
     header("Location: index.php?error=Last Name field cannot be empty");
     exit();
 }
+
+if (!ctype_alpha($uname[0]) || !ctype_alpha($fname[0]) || !ctype_alpha($lname[0])) {
+    echo "The first character should be a letter";
+}
+
+if (!strlen($pass) < 8) {
+    echo "Must contain 8 characters minimum";
+}
