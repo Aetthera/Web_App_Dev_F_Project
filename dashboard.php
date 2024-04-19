@@ -53,11 +53,182 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['
         </div>
         <div class="container-md" style="height: 300px;">
             <div class="d-grid col-md-10 mx-auto mt-5">
-                <a href="game.php">
-                    <button type="button" class="btn btn-danger align-middle mt-5">
-                        <p class="text-light m-0" style="font-size: 24px">Play</p>
-                    </button>
-                </a>
+                <button type="button" id="play-button" class="btn btn-danger align-middle mt-5">
+                    <p class="text-light m-0" style="font-size: 24px">Play</p>
+                </button>
+
+                <div id="game-container" style="display: none;">
+                    <form id="game-form" method="post" class="p-3">
+                    </form>
+                    <div id="game-messages" class="alert" role="alert" style="display: none;"></div>
+                    <button id="next-level" class="btn btn-success mt-3" style="display:none;">Go to Next Level</button>
+                    <button id="try-again" class="btn btn-warning mt-3" style="display:none;">Try Again</button>
+                    <button id="play-again" class="btn btn-info mt-3" style="display:none;">Play Again</button>
+
+                </div>
+
+                <script>
+                    document.getElementById('play-button').addEventListener('click', function() {
+                        var gameContainer = document.getElementById('game-container');
+                        if (gameContainer.style.display === 'none') {
+                            gameContainer.style.display = 'block';
+                            initializeGame();
+                        } else {
+                            gameContainer.style.display = 'none';
+                        }
+                    });
+
+                    function initializeGame() {}
+                </script>
+
+                <script>
+                    function initializeGame() {
+
+                        createGameFormForLevel(1);
+                    }
+
+                    function createGameFormForLevel(level) {
+                        const gameForm = document.getElementById('game-form');
+                        gameForm.innerHTML = '';
+
+                        for (let i = 0; i < 6; i++) {
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.name = `answer_${i + 1}`;
+                            input.required = true;
+                            gameForm.appendChild(input);
+                        }
+
+                        const submitButton = document.createElement('button');
+                        submitButton.type = 'submit';
+                        submitButton.className = 'btn btn-primary mt-3';
+                        submitButton.textContent = 'Submit Answers';
+                        gameForm.appendChild(submitButton);
+                    }
+
+                    document.getElementById('game-form').addEventListener('submit', function(e) {
+                        e.preventDefault();
+
+
+                        const answers = [...this.querySelectorAll('[name^="answer_"]')].map(input => input.value);
+
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'game_process.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.onload = function() {
+                            if (this.status == 200) {
+                                const result = JSON.parse(this.responseText);
+                                handleGameResponse(result);
+                            }
+                        };
+                        xhr.send(`answers=${JSON.stringify(answers)}&level=${currentLevel}`);
+                    });
+
+                    function handleGameResponse(result) {
+                        var gameMessages = document.getElementById('game-messages');
+                        gameMessages.textContent = result.message;
+
+                        gameMessages.style.display = 'block';
+                        gameMessages.className = result.success ? 'alert alert-success' : 'alert alert-danger';
+                        gameMessages.textContent = result.message;
+
+                        // Showing and hiding buttons based on the game state
+                        document.getElementById('next-level').style.display = result.success && result.levelUp ? 'block' : 'none';
+                        document.getElementById('try-again').style.display = !result.success ? 'block' : 'none';
+                        document.getElementById('play-again').style.display = result.gameOver ? 'block' : 'none';
+
+                        var nextLevelButton = document.getElementById('next-level');
+                        var tryAgainButton = document.getElementById('try-again');
+                        var playAgainButton = document.getElementById('play-again');
+
+                        if (!result.success) {
+                            if (result.message.startsWith('Game Over')) {
+                                playAgainButton.style.display = 'block';
+                            } else {
+                                tryAgainButton.style.display = 'block';
+                            }
+                        } else {
+                            if (result.message.startsWith('Congratulations')) {
+                                playAgainButton.style.display = 'block';
+                            } else {
+                                nextLevelButton.style.display = 'block';
+                            }
+                        }
+                    }
+                    document.getElementById('next-level').addEventListener('click', function() {
+
+                        var currentLevel = parseInt(sessionStorage.getItem('currentLevel'), 10);
+                        sessionStorage.setItem('currentLevel', currentLevel + 1);
+
+                        // Hide the next level button and display the form for the next level
+                        this.style.display = 'none';
+                        initializeGame(); // Reset the form for the next level
+                    });
+
+                    document.getElementById('try-again').addEventListener('click', function() {
+                        // Do not change the level, but reinitialize the form
+                        this.style.display = 'none';
+                        initializeGame(); // Reset the form to try again
+                    });
+
+                    document.getElementById('play-again').addEventListener('click', function() {
+                        // Reset the game state to the beginning
+                        sessionStorage.setItem('currentLevel', 1);
+                        sessionStorage.setItem('lives', 6); // Reset the lives
+
+                        // Hide the play again button and display the form for the first level
+                        this.style.display = 'none';
+                        initializeGame(); // Reset the form to start over
+                    });
+
+                    function initializeGame() {
+                        var currentLevel = sessionStorage.getItem('currentLevel') || 1;
+                        var lives = sessionStorage.getItem('lives') || 6;
+
+                        // Reset the game messages
+                        document.getElementById('game-messages').textContent = '';
+
+                        // Reset the visibility of the control buttons
+                        document.getElementById('next-level').style.display = 'none';
+                        document.getElementById('try-again').style.display = 'none';
+                        document.getElementById('play-again').style.display = 'none';
+
+                        createGameFormForLevel(currentLevel);
+
+                        updateGameDisplay(currentLevel, lives);
+                    }
+
+                    function createGameFormForLevel(level) {
+                        var form = document.getElementById('game-form');
+                        form.innerHTML = ''; // Clear any existing form elements
+
+                        // Generate input fields based on the level
+                        var inputFields = '';
+                        if (level === 1 || level === 2) {
+                            // For letter ordering levels
+                            for (var i = 0; i < 6; i++) {
+                                inputFields += '<input type="text" name="answer[]" maxlength="1" required>';
+                            }
+                        } else {
+                            // For number ordering levels
+                            for (var i = 0; i < 6; i++) {
+                                inputFields += '<input type="number" name="answer[]" min="0" max="100" required>';
+                            }
+                        }
+
+                        form.innerHTML = inputFields; // Add the input fields to the form
+                    }
+
+                    function updateGameDisplay(level, lives) {
+                        var gameMessages = document.getElementById('game-messages');
+                        var levelDisplay = 'Level ' + level;
+                        var livesDisplay = 'Lives: ' + lives;
+
+                        gameMessages.textContent = levelDisplay + ' | ' + livesDisplay;
+                    }
+                </script>
+
+
 
             </div>
         </div>
