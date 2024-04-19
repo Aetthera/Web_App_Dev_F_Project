@@ -53,9 +53,12 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name']) && isset($_SESSION['
         </div>
         <div class="container-md" style="height: 300px;">
             <div class="d-grid col-md-10 mx-auto mt-5">
-                <button type="button" class="btn btn-danger aline-middle mt-5">
-                    <p class="text-light m-0" style="font-size: 24px">Play</p>
-                </button>
+                <a href="game.php">
+                    <button type="button" class="btn btn-danger align-middle mt-5">
+                        <p class="text-light m-0" style="font-size: 24px">Play</p>
+                    </button>
+                </a>
+
             </div>
         </div>
     </div>
