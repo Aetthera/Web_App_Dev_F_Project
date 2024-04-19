@@ -14,6 +14,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </head>
 
     <body>
+        <nav class="text- center heading6">
+            <h1>Team 6</h1>
+        </nav>
         <div class="position-fixed" style="width: 100%;">
             <div class="d-grid col-md-10 mx-auto">
                 <button type="button" class="btn btn-primary mt-3 ">
