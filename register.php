@@ -12,12 +12,15 @@ if (isset($_POST['uname']) && isset($_POST['pass']) && isset($_POST['cpass']) &&
         return $data;
     }
 }
+
+// Collecting input data
 $uname = validate($_POST['uname']);
 $pass = validate($_POST['pass']);
 $cpass = validate($_POST['cpass']);
 $fname = validate($_POST['fname']);
 $lname = validate($_POST['lname']);
 
+// Validation for empty fields
 if (empty($uname)) {
     header("Location: index.php?error=Username field cannot be empty");
     exit();
@@ -35,10 +38,17 @@ if (empty($uname)) {
     exit();
 }
 
+// Validation for names and username starting with a letter
 if (!ctype_alpha($uname[0]) || !ctype_alpha($fname[0]) || !ctype_alpha($lname[0])) {
     echo "The first character should be a letter";
 }
 
-if (!strlen($pass) < 8) {
+// Validation for length of username and password
+if (!strlen($pass) < 8 || !strlen($uname) < 8) {
     echo "Must contain 8 characters minimum";
+}
+
+// Password and Confirm Password should match
+if ($pass !== $cpass) {
+    $errorMessage('Password and Confirm Password do not match.');
 }
