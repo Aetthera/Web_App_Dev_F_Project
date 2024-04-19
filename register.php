@@ -52,6 +52,3 @@ if (!strlen($pass) < 8 || !strlen($uname) < 8) {
 if ($pass !== $cpass) {
     $errorMessage('Sorry, you entered 2 different passwords.');
 }
-
-header("Location: index.php?error=Username field cannot be empty&uname=" . urlencode($uname) . "&fname=" . urlencode($fname) . "&lname=" . urlencode($lname));
-exit();
