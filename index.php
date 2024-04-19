@@ -129,7 +129,7 @@
                         <input type="submit" name="change_password" value="Edit" class="btn btn-primary d-grid col-12">
                     </div>
                     <div class="form-group col-12 mt-2 mb-4">
-                        <a href="index.php" class="btn btn-secondary d-grid col-12">Login</a>
+                        <a href="index.php" class="btn btn-secondary d-grid col-12"> Back to Login</a>
                     </div>
                 </form>
             </div>
