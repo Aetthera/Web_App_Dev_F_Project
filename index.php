@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="form-group col-12">
-                    <button type="submit" name="register" id="register"==class="btn btn-primary d-grid col-12 mt-4 mb-2">Register</button>
+                    <input type="submit" name="register" id="register" value="Register" class="btn btn-primary d-grid col-12 mt-4 mb-2"></input>
                 </div>
                 <div class="form-group">
                     <p class="text-center mt-4">Already Registered? <a href="#" id="login-btn">Login Here</a></p>
