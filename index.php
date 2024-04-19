@@ -23,107 +23,102 @@
 </head>
 
 <body class="bg-light">
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4" id="alert">
-                <div class="alert alert-success">
-                    <strong id="result">hello world</strong>
+    <nav class="text- center heading6">
+        <h1>Team 6</h1>
+    </nav>
+
+
+    <!-- Login Form -->
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="login-box">
+            <h2 class="text-center mt-2">Login</h2>
+            <form action="login.php" method="post" role="form" class="p-2" id="login-frm">
+                <?php if (isset($_GET['error'])) { ?>
+                    <p class="error"> <?php echo $_GET['error']; ?></p>
+                <?php } ?>
+                <div class="form-group mb-3">
+                    <input type="text" name="username" class="form-control" placeholder="Username" required>
                 </div>
-            </div>
+                <div class="form-group mt-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-group mt-4 mb-2">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
+                        <label for="customCheck" class="custom-control-label">Remember Me</label>
+                        <a href="#" id="forgot-btn" class="float-end">Forgot Password?</a>
+                    </div>
+                </div>
+                <div class="form-group col-12">
+                    <input type="submit" name="login" id="login" value="Login" class="btn btn-primary d-grid col-12 mt-4 mb-2">
+                </div>
+                <div class="form-group">
+                    <p class="text-center mt-4">New User? <a href="#" id="register-btn">Register Here</a></p>
+                </div>
+            </form>
         </div>
+    </div>
 
 
-        <!-- Login Form -->
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="login-box">
-                <h2 class="text-center mt-2">Login</h2>
-                <form action="login.php" method="post" role="form" class="p-2" id="login-frm">
-                    <?php if (isset($_GET['error'])) { ?>
-                        <p class="error"> <?php echo $_GET['error']; ?></p>
-                    <?php } ?>
-                    <div class="form-group mb-3">
-                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+    <!-- Registration Form -->
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="register-box">
+            <h2 class="text-center mt-2">Register</h2>
+            <form action="register.php" method="post" role="form" class="p-2" id="register-frm">
+                <div class="form-group mt-3">
+                    <input type="text" name="uname" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="password" name="pass" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="password" name="cpass" class="form-control" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+                </div>
+                <div class="form-group mt-4 mb-2">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
+                        <label for="customCheck2" class="custom-control-label">I agree to <a href="#">be happy.</a></label>
                     </div>
-                    <div class="form-group mt-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
-                    </div>
-                    <div class="form-group mt-4 mb-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
-                            <label for="customCheck" class="custom-control-label">Remember Me</label>
-                            <a href="#" id="forgot-btn" class="float-end">Forgot Password?</a>
-                        </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <input type="submit" name="login" id="login" value="Login" class="btn btn-primary d-grid col-12 mt-4 mb-2">
-                    </div>
-                    <div class="form-group">
-                        <p class="text-center mt-4">New User? <a href="#" id="register-btn">Register Here</a></p>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-group col-12">
+                    <button type="submit" name="register" id="register"==class="btn btn-primary d-grid col-12 mt-4 mb-2">Register</button>
+                </div>
+                <div class="form-group">
+                    <p class="text-center mt-4">Already Registered? <a href="#" id="login-btn">Login Here</a></p>
+                </div>
+            </form>
         </div>
+    </div>
 
 
-        <!-- Registration Form -->
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="register-box">
-                <h2 class="text-center mt-2">Register</h2>
-                <form action="" method="post" role="form" class="p-2" id="register-frm">
-                    <div class="form-group mt-3">
-                        <input type="text" name="uname" class="form-control" placeholder="Username" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="password" name="pass" class="form-control" placeholder="Password" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="password" name="cpass" class="form-control" placeholder="Confirm Password" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" name="fname" class="form-control" placeholder="First Name" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
-                    </div>
-                    <div class="form-group mt-4 mb-2">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-                            <label for="customCheck2" class="custom-control-label">I agree to <a href="#">be happy.</a></label>
-                        </div>
-                    </div>
-                    <div class="form-group col-12">
-                        <input type="submit" name="register" id="register" value="Register" class="btn btn-primary d-grid col-12 mt-4 mb-2">
-                    </div>
-                    <div class="form-group">
-                        <p class="text-center mt-4">Already Registered? <a href="#" id="login-btn">Login Here</a></p>
-                    </div>
-                </form>
-            </div>
+    <!-- Forgot Password -->
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="forgot-box">
+            <h2 class="text-center mt-2">Reset Password</h2>
+            <form action="" method="post" role="form" class="p-2" id="forgot-frm">
+                <div class="form-group mb-3">
+                    <small class="text-muted">
+                        To reset the password, enter your username.
+                    </small>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="uname" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group col-12">
+                    <input type="submit" name="forgot" id="forgot" value="Reset" class="btn btn-primary d-grid col-12 mt-4 mb-2">
+                </div>
+                <div class="form-group text-center mt-3">
+                    <a href="#" id="back-btn">Back</a>
+                </div>
+            </form>
         </div>
-
-
-        <!-- Forgot Password -->
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="forgot-box">
-                <h2 class="text-center mt-2">Reset Password</h2>
-                <form action="" method="post" role="form" class="p-2" id="forgot-frm">
-                    <div class="form-group mb-3">
-                        <small class="text-muted">
-                            To reset the password, enter your username.
-                        </small>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="text" name="uname" class="form-control" placeholder="Username" required>
-                    </div>
-                    <div class="form-group col-12">
-                        <input type="submit" name="forgot" id="forgot" value="Reset" class="btn btn-primary d-grid col-12 mt-4 mb-2">
-                    </div>
-                    <div class="form-group text-center mt-3">
-                        <a href="#" id="back-btn">Back</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
