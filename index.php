@@ -27,10 +27,6 @@
         <h1>Team 6</h1>
     </nav>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> phpLogic
     <!-- Login Form -->
     <div class="row">
         <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="login-box">
@@ -90,11 +86,7 @@
                     </div>
                 </div>
                 <div class="form-group col-12">
-<<<<<<< HEAD
-                    <input type="submit" name="register" id="register" value="Register" class="btn btn-primary d-grid col-12 mt-4 mb-2"></input>
-=======
                     <button type="submit" name="register" id="register" class="btn btn-primary d-grid col-12 mt-4 mb-2">Register</button>
->>>>>>> phpLogic
                 </div>
                 <div class="form-group">
                     <p class="text-center mt-4">Already Registered? <a href="#" id="login-btn">Login Here</a></p>
@@ -127,10 +119,6 @@
         </div>
     </div>
     </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> phpLogic
     <footer>
         <h6 class="text-center">All right reserved</h6>
     </footer>
