@@ -59,25 +59,33 @@
     </div>
 
 
+
+
+
     <!-- Registration Form -->
     <div class="row">
         <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="register-box">
             <h2 class="text-center mt-2">Register</h2>
             <form action="register.php" method="post" role="form" class="p-2" id="register-frm">
                 <div class="form-group mt-3">
-                    <input type="text" name="uname" class="form-control" placeholder="Username" required>
+                    <input type="text" name="uname" class="form-control" placeholder="Username" onkeyup="validateInput(this, 'uname')" required>
+                    <small id="uname-validation-message" class="form-text text-danger"></small>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="password" name="pass" class="form-control" placeholder="Password" required>
+                    <input type="password" name="pass" class="form-control" placeholder="Password" onkeyup="validateInput(this, 'pass')" required>
+                    <small id="pass-validation-message" class="form-text text-danger"></small>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="password" name="cpass" class="form-control" placeholder="Confirm Password" required>
+                    <input type="password" name="cpass" class="form-control" placeholder="Confirm Password" onkeyup="validateInput(this, 'cpass')" required>
+                    <small id="cpass-validation-message" class="form-text text-danger"></small>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+                    <input type="text" name="fname" class="form-control" placeholder="First Name" onkeyup="validateInput(this, 'fname')" required>
+                    <small id="fname-validation-message" class="form-text text-danger"></small>
                 </div>
                 <div class="form-group mt-3">
-                    <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+                    <input type="text" name="lname" class="form-control" placeholder="Last Name" onkeyup="validateInput(this, 'lname')" required>
+                    <small id="lname-validation-message" class="form-text text-danger"></small>
                 </div>
                 <div class="form-group mt-4 mb-2">
                     <div class="custom-control custom-checkbox">
@@ -126,6 +134,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script>
+        function validateInput(element, fieldName) {
+            const value = element.value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'validate.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+                    // Parse the JSON response
+                    const response = JSON.parse(this.responseText);
+                    // Select the corresponding message element
+                    const messageElement = document.getElementById(fieldName + '-validation-message');
+                    if (response.valid) {
+                        messageElement.textContent = ''; // Clear message if valid
+                        messageElement.style.display = 'none'; // Hide the message element
+                    } else {
+                        messageElement.textContent = response.message; // Show error message
+                        messageElement.style.display = 'block'; // Show the message element
+                    }
+                }
+            };
+            const data = encodeURIComponent(fieldName) + '=' + encodeURIComponent(value);
+            xhr.send(data);
+        }
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
