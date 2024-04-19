@@ -16,7 +16,7 @@
     <style>
         #alert,
         #register-box,
-        #forgot-box {
+        #password-change-box {
             display: none;
         }
     </style>
@@ -105,27 +105,37 @@
 
 
     <!-- Forgot Password -->
-    <div class="row">
-        <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="forgot-box">
-            <h2 class="text-center mt-2">Reset Password</h2>
-            <form action="" method="post" role="form" class="p-2" id="forgot-frm">
-                <div class="form-group mb-3">
-                    <small class="text-muted">
-                        To reset the password, enter your username.
-                    </small>
-                </div>
-                <div class="form-group mt-3">
-                    <input type="text" name="uname" class="form-control" placeholder="Username" required>
-                </div>
-                <div class="form-group col-12">
-                    <input type="submit" name="forgot" id="forgot" value="Reset" class="btn btn-primary d-grid col-12 mt-4 mb-2">
-                </div>
-                <div class="form-group text-center mt-3">
-                    <a href="#" id="back-btn">Back</a>
-                </div>
-            </form>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-4 bg-body-secondary rounded" id="password-change-box">
+                <h2 class="text-center mt-2">Change Password</h2>
+                <form action="process_password_change.php" method="post" class="p-2" id="password-change-frm">
+                    <div class="form-group mt-3">
+                        <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="fname" class="form-control" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="lname" class="form-control" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" name="new_password" class="form-control" placeholder="New Password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="form-group col-12 mt-4 mb-2">
+                        <input type="submit" name="change_password" value="Edit" class="btn btn-primary d-grid col-12">
+                    </div>
+                    <div class="form-group col-12 mt-2 mb-4">
+                        <a href="index.php" class="btn btn-secondary d-grid col-12">Login</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
     </div>
     <footer>
         <h6 class="text-center">All right reserved</h6>
@@ -164,23 +174,22 @@
         $(document).ready(function() {
             $("#forgot-btn").click(function() {
                 $("#login-box").hide();
-                $("#forgot-box").show();
+                $("#password-change-box").show();
             });
-        });
+            $("#register-btn").click(function() {
+                $("#login-box").hide();
+                $("#register-box").show();
+            });
 
-        $("#register-btn").click(function() {
-            $("#login-box").hide();
-            $("#register-box").show();
-        });
+            $("#login-btn").click(function() {
+                $("#register-box").hide();
+                $("#login-box").show();
+            });
 
-        $("#login-btn").click(function() {
-            $("#register-box").hide();
-            $("#login-box").show();
-        });
-
-        $("#back-btn").click(function() {
-            $("#forgot-box").hide();
-            $("#login-box").show();
+            $("#back-btn").click(function() {
+                $("#password-change-box").hide();
+                $("#login-box").show();
+            });
         });
     </script>
 </body>
